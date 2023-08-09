@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Conifiguration status="DEBUG">
+    <!--
+    Esta seção define a configuração para o framework de logging Log4j.
+    O nível de status está definido como "DEBUG", o que significa que os registros de depuração e níveis superiores serão registrados.
+    -->
+    <Appenders>
+        <!-- Aqui começamos a definir os destinos (appenders) para os registros de log. -->
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <!-- Configurando o appender para enviar logs para o console (saída do sistema). -->
+            <!-- O padrão de layout define como cada registro será formatado. -->
+            <PatternLayout pattern="%d{ISO8601}{GMT+0} %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <File name="LogToFile" fileName="logs/microServiceEmail.log">
+            <!-- Configurando o appender para enviar logs para um arquivo. -->
+            <!-- O nome do arquivo de log é "logs/microServiceEmail.log". -->
+            <!-- Novamente, o padrão de layout é definido para formatar os registros. -->
+            <PatternLayout>
+                <Pattern>%d{ISO8601}{GMT+0} %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <!-- Aqui definimos os loggers, que são categorias ou classes para as quais queremos configurar o log. -->
+        <Root level="info">
+            <!-- Configuramos o logger raiz para registrar mensagens de nível "info" e superiores. -->
+            <!-- As mensagens serão enviadas aos appenders definidos acima (console e arquivo). -->
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Conifiguration>
